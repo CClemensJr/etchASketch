@@ -1,15 +1,22 @@
 #container {
-  position: relative;
+  display:block;
+  margin: auto;
+
+  width: 400px;
+  height: 400px;
+
+  border: 1px solid black;
+  border-collapse: collapse;
+
+  background-color: #c8cbcc;
 }
 
 #screenTable {
   display:block;
   margin: auto;
 
-  width: 800px;
-  height: 600px;
-
-  text-align: center;
+  width: 400px;
+  height: 400px;
 
   border: 1px solid black;
   border-collapse: collapse;
@@ -18,9 +25,9 @@
 }
 
 td {
-  width: 50px;
-  height: 37.5px;
-  border: 1px solid black;
+  width: auto;
+  height: auto;
+  /*border: 1px solid black;*/
 }
 
 .hoverTD {
@@ -32,4 +39,8 @@ button {
   width: 10%;
   border: 1px solid black;
   padding: 10px;
+}
+
+.resetTable {
+  background-color: #c8cbcc;
 }
