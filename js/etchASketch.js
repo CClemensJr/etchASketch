@@ -17,26 +17,22 @@ function createGrid(number) {
       var cell = row.insertCell(j);
     }
   }
+  //Add the ability to draw!
+  drawBlocks();
 }
 
 createGrid(numBlocks);
 
-$(document).ready(function() {
-  //create a jquery script to add a color change effect when hovering over a square.
-  $("td").hover(function(){
+
+//Change the color when hovering over a square
+function drawBlocks() {
+  $('td').hover(function(){
     $(this).addClass('hoverTD');
-  });
+  })
+}
 
-  //When the user clicks the button...
-  $("#setBlocks").on('click', function() {
-    //...reset the grid to it's default state...
-    $('td').addClass('resetTable');
-    //$('td').remove();
-  });
-});
-
-//and prompt for the new number of blocks per side
-function promptBlocks(){
+//When user clicks on the button prompt for the new number of blocks per side
+function promptBlocks() {
   var userBlocks = prompt("How many squares per side, young master?", "16");
 
   //check to see if a number was received
@@ -45,6 +41,6 @@ function promptBlocks(){
     alert("You must put in a number");
     return false;
   }
-
+  //create a new grid with userBlocks on every side
   createGrid(userBlocks);
 }
