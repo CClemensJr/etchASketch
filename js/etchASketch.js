@@ -1,46 +1,150 @@
 //The number of rows and columns to be added to the grid
-var numBlocks = 5;
+var numBlocks = 16;
 
-//function used to create the etch-a-sketch grid
-function createGrid(number) {
-  //clear the previous table
+//************************************************************************
+//********* FUNCTION USED TO CLEAR THE SKETCH PAD ************************
+//************************************************************************
+function clearPad() {
   $('tr').remove();
+}
+
+
+//************************************************************************
+//********* FUNCTION USED TO PROMPT FOR  SKETCH PAD PARAMETERS ***********
+//************************************************************************
+function promptBlocks() {
+  //Set user input to a variable
+  var userBlocks = prompt("How many squares per side, young master?", "16");
+
+  //check to see if a number was received and if the number was too high
+  if (isNaN(userBlocks))
+  {
+    alert("You must put in a number");
+  } else if (userBlocks > 200) {
+      alert("Slow down killer, you are going to hurt yourself! Why don't you be a good boy and try something under 200?");
+  }
+
+  //If good return userBlocks for use in other functions.
+  return userBlocks;
+}
+
+//************************************************************************
+//********* FUNCTION USED TO CREATE THE SKETCHPAD ************************
+//************************************************************************
+function createPad(blocksPerSide)
+{
   //Create a table with JS and attach it to the html
   var table = document.getElementById('screenTable');
   //Create an empty row and add it to the table
-  for (i = 0; i < number; i++)
+  for (i = 0; i < blocksPerSide; i++)
   {
     var row = table.insertRow(i);
     //Add columns to the row
-    for (j = 0; j < number; j++)
+    for (j = 0; j < blocksPerSide; j++)
     {
       var cell = row.insertCell(j);
     }
   }
-  //Add the ability to draw!
-  drawBlocks();
 }
 
-createGrid(numBlocks);
-
-
+//************************************************************************
+//********* FUNCTION USED TO "DRAW" ON THE SKETCHPAD *********************
+//************************************************************************
 //Change the color when hovering over a square
-function drawBlocks() {
-  $('td').hover(function(){
-    $(this).addClass('hoverTD');
-  })
+function drawBlocks(number) {
+  switch (number) {
+    case "1":
+      //When the mouse is over the square
+      $('td').hover(function(){
+        //color the cell with the standard color
+        $(this).addClass('hoverTD');
+      });
+      break;
+    case "2":
+      //When the mouse is over the square
+      $('td').hover(function(){
+        //assign a random number to each color
+        var r = Math.floor((Math.random() * 255) + 0);
+        var g = Math.floor((Math.random() * 255) + 0);
+        var b = Math.floor((Math.random() * 255) + 0);
+
+        //color the td with this random color
+        $(this).css('background-color', 'rgb(' + r + ',' 
+                                               + g + ','
+                                               + b +')');
+      });
+      break;
+
+    case "3":
+      //variable to keep track of hovers
+      var hoveredOn = 0;
+
+      //When the mouse is over the square
+      $('td').hover(function(){
+        //assign a number to each color
+        var r = 250;
+        var g = 250;
+        var b = 250;
+
+        hoveredOn += 1;
+
+        if (hoveredOn === 1) {
+          //color the td with the initial color
+          $(this).css('background-color', 'rgb(' + r + ',' + g + ',' + b +')');
+        } else {
+          //darken the initial color by the number of times the square has been hovered on
+          $(this).css('background-color', 'rgb(' + (r - (r*((10/100)*hoveredOn))) + ','
+                                                 + (g - (g*((10/100)*hoveredOn))) + ','
+                                                 + (b - (b*((10/100)*hoveredOn))) +')');
+        }
+      });
+      break;
+  }
 }
 
-//When user clicks on the button prompt for the new number of blocks per side
-function promptBlocks() {
-  var userBlocks = prompt("How many squares per side, young master?", "16");
 
-  //check to see if a number was received
-  if (isNaN(userBlocks))
-  {
-    alert("You must put in a number");
-    return false;
-  }
-  //create a new grid with userBlocks on every side
-  createGrid(userBlocks);
+//************************************************************************
+//********* FUNCTION USED TO CREATE THE DEFAULT SKETCHPAD ***************
+//************************************************************************
+//function used to create the standard etch-a-sketch grid
+function standardSketchPad() {
+  //clear the previous sketch
+  clearPad();
+
+  //create the drawing surface based on what the user wants
+  createPad(promptBlocks());
+
+  //Add the ability to draw!
+  drawBlocks("1");
+}
+
+
+//************************************************************************
+//********* FUNCTION USED TO CREATE THE PIZZAZZ SKETCHPAD ****************
+//************************************************************************
+//function used to create the standard etch-a-sketch grid
+function colorSketchPad() {
+  //clear the previous sketch
+  clearPad();
+
+  //create the drawing surface based on what the user wants
+  createPad(promptBlocks());
+
+  //Add the ability to draw!
+  drawBlocks("2");
+}
+
+
+//************************************************************************
+//********* FUNCTION USED TO CREATE THE MYSTERIOUS SKETCHPAD *************
+//************************************************************************
+function shadeSketchPad() {
+  //clear the previous sketch
+  clearPad();
+
+  //create the drawing surface based on what the user wants
+  createPad(promptBlocks());
+
+  //Add the ability to draw!
+  drawBlocks("3");
 }

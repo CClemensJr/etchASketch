@@ -4,11 +4,15 @@
 <head>
   <title>This ain't your daddy's Etch-A-Sketch!</title>
   <link rel="stylesheet" type="text/css" href="css/etchASketch.css">
-  <!--link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css"-->
+  <!--link rel="stylesheet"
+  href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css"-->
 </head>
 
 <body>
-  <button id="setBlocks" onclick="promptBlocks()">Set Blocks</button>
+  <button id="clearSketch" onclick="clearPad()">Clear your sketchpad.</button>
+  <button id="plainSketch" onclick="standardSketchPad()">Sketch the old fashioned way.</button>
+  <button id="pizzazzSketch" onclick="colorSketchPad()">Sketch with pizzazz!</button>
+  <button id="mysteriousSketch" onclick="shadeSketchPad()">Sketch mysteriously.</button>
   <!--The container holds the table use to show the Etch-A-Sketch screen in the website-->
   <div id="container">
     <table id="screenTable">

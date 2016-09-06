@@ -27,14 +27,16 @@
 td {
   width: auto;
   height: auto;
-  /*border: 1px solid black;*/
+  border: 1px solid black;
 }
 
+
 .hoverTD {
-  background-color: navy;
+  background-color: #36454f;
 }
 
 button {
+  display: inline-block;
   margin: 5% 45% 10px 45%;
   width: 10%;
   border: 1px solid black;
