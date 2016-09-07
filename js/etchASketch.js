@@ -82,14 +82,19 @@ function drawBlocks(number) {
     case "3":
       //When the mouse is over the square
       $('td').hover(function(){
-          var opacity = $(this).css('opacity');
 
-          if (opacity < 0.1) {
-            $(this).css('opacity', opacity + 0.1);
+          var opac = $(this).attr('opac');
+
+          if (typeof opac !== typeof undefined && opac !== false) {
+            $(this).css('opacity', opac);
+            opac = parseFloat(opac)+0.1;
+            $(this).attr('opac',opac);
           } else {
-            $(this).css('opacity', 1);
+            $(this).attr('opac',0.1);
+            $(this).css('opacity', 0.1);
           }
       });
+
       break;
 
     default:
@@ -141,5 +146,6 @@ function shadeSketchPad() {
   createPad(promptBlocks());
 
   //Add the ability to draw!
+   $("td").css({"background-color":"black", "opacity": 0})
   drawBlocks("3");
 }
