@@ -9,10 +9,12 @@
 </head>
 
 <body>
-  <button id="clearSketch" onclick="clearPad()">Clear your sketchpad.</button>
-  <button id="plainSketch" onclick="standardSketchPad()">Sketch the old fashioned way.</button>
-  <button id="pizzazzSketch" onclick="colorSketchPad()">Sketch with pizzazz!</button>
-  <button id="mysteriousSketch" onclick="shadeSketchPad()">Sketch mysteriously.</button>
+  <div id="buttonContainer">
+    <button id="clearSketch" onclick="clearPad()">Clear your sketchpad.</button>
+    <button id="plainSketch" onclick="standardSketchPad()">Sketch the old fashioned way.</button>
+    <button id="pizzazzSketch" onclick="colorSketchPad()">Sketch with pizzazz!</button>
+    <button id="mysteriousSketch" onclick="shadeSketchPad()">Sketch mysteriously.</button>
+  </div>
   <!--The container holds the table use to show the Etch-A-Sketch screen in the website-->
   <div id="container">
     <table id="screenTable">

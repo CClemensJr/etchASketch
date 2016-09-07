@@ -16,6 +16,8 @@ function promptBlocks() {
   //Set user input to a variable
   var userBlocks = prompt("How many squares per side, young master?", "16");
 
+  cancel = false;
+
   //check to see if a number was received and if the number was too high
   if (isNaN(userBlocks))
   {
@@ -52,6 +54,7 @@ function createPad(blocksPerSide)
 //************************************************************************
 //Change the color when hovering over a square
 function drawBlocks(number) {
+  console.log("The case number is " + number);
   switch (number) {
     case "1":
       //When the mouse is over the square
@@ -60,6 +63,7 @@ function drawBlocks(number) {
         $(this).addClass('hoverTD');
       });
       break;
+
     case "2":
       //When the mouse is over the square
       $('td').hover(function(){
@@ -69,36 +73,27 @@ function drawBlocks(number) {
         var b = Math.floor((Math.random() * 255) + 0);
 
         //color the td with this random color
-        $(this).css('background-color', 'rgb(' + r + ',' 
+        $(this).css('background-color', 'rgb(' + r + ','
                                                + g + ','
                                                + b +')');
       });
       break;
 
     case "3":
-      //variable to keep track of hovers
-      var hoveredOn = 0;
-
       //When the mouse is over the square
       $('td').hover(function(){
-        //assign a number to each color
-        var r = 250;
-        var g = 250;
-        var b = 250;
+          var opacity = $(this).css('opacity');
 
-        hoveredOn += 1;
-
-        if (hoveredOn === 1) {
-          //color the td with the initial color
-          $(this).css('background-color', 'rgb(' + r + ',' + g + ',' + b +')');
-        } else {
-          //darken the initial color by the number of times the square has been hovered on
-          $(this).css('background-color', 'rgb(' + (r - (r*((10/100)*hoveredOn))) + ','
-                                                 + (g - (g*((10/100)*hoveredOn))) + ','
-                                                 + (b - (b*((10/100)*hoveredOn))) +')');
-        }
+          if (opacity < 0.1) {
+            $(this).css('opacity', opacity + 0.1);
+          } else {
+            $(this).css('opacity', 1);
+          }
       });
       break;
+
+    default:
+      alert("Whoops, something went wrong.")
   }
 }
 

@@ -35,12 +35,16 @@ td {
   background-color: #36454f;
 }
 
+#buttonContainer {
+  display: block;
+  margin-top: 10%;
+  margin-left: 25%;
+}
 button {
-  display: inline-block;
-  margin: 5% 45% 10px 45%;
-  width: 10%;
+  width: 15%;
   border: 1px solid black;
   padding: 10px;
+  background-color: white;
 }
 
 .resetTable {
